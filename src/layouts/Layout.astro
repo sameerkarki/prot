@@ -13,6 +13,13 @@
   <slot></slot>
   <!-- Initialize the widget -->
   <script>
+
+declare global {
+	interface Window {
+		netlifyIdentity: string
+	}
+}
+
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
