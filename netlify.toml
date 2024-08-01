@@ -1,0 +1,38 @@
+[build]
+  publish = "public" # Directory to publish
+  command = "npm run build" # Build command
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+  headers = {
+    "Access-Control-Allow-Origin" = "*"
+  }
+
+[context.production]
+  command = "npm run build"
+  publish = "dist" # Directory to publish for production
+
+[context.deploy-preview]
+  command = "npm run build"
+  publish = "dist" # Directory to publish for deploy preview
+
+[context.branch-deploy]
+  command = "npm run build"
+  publish = "dist" # Directory to publish for branch deploy
+
+[context.deploy-preview]
+  command = "npm run build"
+  publish = "dist" # Directory to publish for deploy preview
+
+[context.branch-deploy]
+  command = "npm run build"
+  publish = "dist" # Directory to publish for branch deploy
+
+[functions]
+  directory = "netlify/functions" # Directory for Netlify Functions
+
+[identity]
+  enabled = true
+  jwt_role_path = "app_metadata.authorization.roles"
